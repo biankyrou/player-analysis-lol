@@ -1,4 +1,4 @@
-# League of Legends Match Analyzer
+# League of Legends Match Analyzer Version 1.0
 
 Este projeto realiza a análise de partidas de League of Legends com base nos dados de invocadores (jogadores). Utilizando a API do jogo, é possível buscar informações detalhadas de partidas e realizar análises comparativas entre jogadores e seus oponentes.
 
@@ -42,4 +42,4 @@ Este projeto realiza a análise de partidas de League of Legends com base nos da
 
 
 
-Esse **README.md** explica rapidamente as funcionalidades e os passos para rodar o projeto.
+Esse **README.md** explica rapidamente as funcionalidades e os passos para rodar o projeto. 
