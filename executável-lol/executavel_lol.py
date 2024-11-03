@@ -225,7 +225,7 @@ def main():
         primeira_partida = primeira_partida.drop(columns=primeira_partida.filter(like='perks').columns)
 
         #----------
-        # Lista de chaves que você deseja verificar
+        # Lista de chaves 
         chaves_para_verificar = [
             'challenges.kda',
             'challenges.killParticipation',
