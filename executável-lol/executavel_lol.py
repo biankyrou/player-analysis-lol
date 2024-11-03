@@ -6,8 +6,6 @@ import pandas as pd
 from pandas import json_normalize
 os.environ['RIOT_API_KEY'] = 'RGAPI-75a86f31-c500-49dc-9af4-769a65cabc7d'
 
-
-
 def transform_nick_puuid(tag, nick):
     api_key = os.getenv('RIOT_API_KEY')
     url = f'https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/{nick}/{tag}?api_key={api_key}'
@@ -32,7 +30,6 @@ def get_id_partidas(puuid, countMatch, typeMatch):
     else:
         return idsPartidas
 
-
 def salvar_json(dados, nome_arquivo, pasta):
     if not os.path.exists(pasta):
         os.makedirs(pasta)
@@ -43,7 +40,6 @@ def salvar_json(dados, nome_arquivo, pasta):
         json.dump(dados, arquivo_json)
 
     print(f"Arquivo JSON '{nome_arquivo}' salvo com sucesso na pasta '{pasta}'!")
-
 
 def check_json_values(data):
     errors = []
@@ -61,9 +57,7 @@ def check_json_values(data):
                 check_structure(item)  # Verifica cada item na lista
 
     check_structure(data)
-    
     return errors
-
 
 
 def obter_detalhes_partida(id_partida):
@@ -114,7 +108,6 @@ def cria_dataset_partidas(pasta_json, chunk_size=10):
     df_concatenado_info = pd.concat(dataframe_info, ignore_index=True)
 
     return df_concatenado_info
-
 
 
 def main():
@@ -224,7 +217,6 @@ def main():
         primeira_partida = primeira_partida.drop(columns=primeira_partida.filter(like='missions').columns)
         primeira_partida = primeira_partida.drop(columns=primeira_partida.filter(like='perks').columns)
 
-        #----------
         # Lista de chaves 
         chaves_para_verificar = [
             'challenges.kda',
@@ -250,7 +242,6 @@ def main():
             'wardsKilled',
             'challenges.controlWardsPlaced'
         ]
-
 
         for chave in chaves_para_verificar:
             if chave not in primeira_partida.columns:  
@@ -282,8 +273,7 @@ def main():
             
             game_duration_minutes = dados_player['timePlayed'].values[0] / 60
 
-
-
+            
             if position_player_input == '1':
                 if position_player == 'TOP':
                     kda_soma += (dados_player['challenges.kda'].values[0])
@@ -302,7 +292,6 @@ def main():
                     level_diff_soma += (dados_player['champLevel'].iloc[0] - dados_oponente['champLevel'].iloc[0])
                     kda_diff_soma += (dados_player['challenges.kda'].values[0] - dados_oponente['challenges.kda'].values[0])
 
-
                     # Early and Lane Phase para laners
                     vantagem_grande_early_phase_soma += (dados_player['challenges.earlyLaningPhaseGoldExpAdvantage'].values[0])
                     cs_early_game_soma += (dados_player['challenges.laneMinionsFirst10Minutes'].values[0] / 10)
@@ -313,7 +302,6 @@ def main():
                     maxCs_comparado_com_oponente_soma += (dados_player['challenges.maxCsAdvantageOnLaneOpponent'].values[0])
                     maxLevel_comparado_com_oponente_soma += (dados_player['challenges.maxLevelLeadLaneOpponent'].values[0])
                     vantagem_grande_lane_phase_soma += (dados_player['challenges.laningPhaseGoldExpAdvantage'].values[0])
-
 
                     if dados_player['win'].values[0] == True:
                         contagem_wins += 1
@@ -338,7 +326,6 @@ def main():
                     level_diff_soma += (dados_player['champLevel'].iloc[0] - dados_oponente['champLevel'].iloc[0])
                     kda_diff_soma += (dados_player['challenges.kda'].values[0] - dados_oponente['challenges.kda'].values[0])
 
-
                     # Early and Lane Phase para laners
                     vantagem_grande_early_phase_soma += (dados_player['challenges.earlyLaningPhaseGoldExpAdvantage'].values[0])
                     cs_early_game_soma += (dados_player['challenges.laneMinionsFirst10Minutes'].values[0] / 10)
@@ -349,7 +336,6 @@ def main():
                     maxCs_comparado_com_oponente_soma += (dados_player['challenges.maxCsAdvantageOnLaneOpponent'].values[0])
                     maxLevel_comparado_com_oponente_soma += (dados_player['challenges.maxLevelLeadLaneOpponent'].values[0])
                     vantagem_grande_lane_phase_soma += (dados_player['challenges.laningPhaseGoldExpAdvantage'].values[0])
-
 
                     if dados_player['win'].values[0] == True:
                         contagem_wins += 1
@@ -374,7 +360,6 @@ def main():
                     level_diff_soma += (dados_player['champLevel'].iloc[0] - dados_oponente['champLevel'].iloc[0])
                     kda_diff_soma += (dados_player['challenges.kda'].values[0] - dados_oponente['challenges.kda'].values[0])
 
-
                     # Early and Lane Phase para laners
                     vantagem_grande_early_phase_soma += (dados_player['challenges.earlyLaningPhaseGoldExpAdvantage'].values[0])
                     cs_early_game_soma += (dados_player['challenges.laneMinionsFirst10Minutes'].values[0] / 10)
@@ -385,7 +370,6 @@ def main():
                     maxCs_comparado_com_oponente_soma += (dados_player['challenges.maxCsAdvantageOnLaneOpponent'].values[0])
                     maxLevel_comparado_com_oponente_soma += (dados_player['challenges.maxLevelLeadLaneOpponent'].values[0])
                     vantagem_grande_lane_phase_soma += (dados_player['challenges.laningPhaseGoldExpAdvantage'].values[0])
-
 
                     if dados_player['win'].values[0] == True:
                         contagem_wins += 1
@@ -443,7 +427,6 @@ def main():
                     wards_eliminadas_soma += (dados_player['wardsKilled'].values[0])
                     control_wards_colocadas_soma += (dados_player['challenges.controlWardsPlaced'].values[0])
 
-
                     if dados_player['win'].values[0] == True:
                         contagem_wins += 1
                     
@@ -453,7 +436,6 @@ def main():
                 print('Em Andamento!')
             else:
                 print('Opção inválida')
-    
     
     #hora dos prints
     if position_player_input == '1':
