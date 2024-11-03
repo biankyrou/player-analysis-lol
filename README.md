@@ -38,8 +38,4 @@ Este projeto realiza a análise de partidas de League of Legends com base nos da
    git clone https://github.com/seu-usuario/seu-repositorio.git
 2. Instale as dependências necessárias:
     pip install -r requirements.txt
-3. Rode "executavel_lol.py"
-
-
-
-Esse **README.md** explica rapidamente as funcionalidades e os passos para rodar o projeto. 
+3. Rode "executavel_lol.py" 
